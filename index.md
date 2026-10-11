@@ -1,6 +1,6 @@
 # Easy Aurum — Privacy Policy
 
-Last updated: 8 October 2026
+Last updated: 11 October 2026
 
 Contact: crypto.rider86@gmail.com
 
@@ -10,18 +10,20 @@ Easy Aurum is a local-first finance app. The developer does not run any server t
 
 ## Data stored on your device
 
-Accounts, transactions, budgets, goals, rules and connection settings are stored in an encrypted database (SQLCipher) in the app's container on your iPhone. The encryption key is derived from a root secret kept in the iOS Keychain. The same root secret can be restored from your 24-word recovery phrase. The phrase is shown to you once and is never sent anywhere. If you lose both the device and the phrase, the developer cannot recover your data.
+Accounts, transactions, budgets, goals, rules, connection settings and service keys are stored in an encrypted database (SQLCipher) in the app's container on your iPhone. The encryption key is derived from a root secret kept in the iOS Keychain. The same root secret can be restored from your 24-word recovery phrase. The phrase is shown to you once and is never sent anywhere. If you lose both the device and the phrase, the developer cannot recover your data.
 
-Backup files (.eabackup) are created only when you ask for one. They are encrypted with the same root secret. API keys of connections are included in a backup only if you switch that option on.
+Backup files (.eabackup) are created only when you ask for one. They are encrypted with the same root secret. API keys of connections and of services (Alchemy, CoinGecko) are included in a backup only if you switch that option on.
 
 ## Data the app sends over the network
 
 The app contacts third-party services directly from your device. The developer does not see these requests. Each service sees your IP address, the time of the request and the data needed to answer it:
 
-- Exchange rates: Frankfurter (European Central Bank rates), Bank of Russia (cbr.ru) and CoinGecko. Requests contain currency or coin codes, not your balances.
-- Public blockchain data, only if you add a wallet connection: mempool.space (Bitcoin), public RPC nodes and Blockscout (Ethereum and other EVM networks), Solana RPC, toncenter (TON), Aptos indexer. Requests contain the public wallet address you entered. If you enter your own Alchemy key or your own node address, requests go there instead.
+- Exchange rates: Frankfurter (European Central Bank rates), Bank of Russia (cbr.ru) and CoinGecko. If one of them is unavailable, the app falls back to currency-api (cdn.jsdelivr.net, latest.currency-api.pages.dev) for currencies and Coinpaprika (api.coinpaprika.com) for coins. Requests contain currency or coin codes, not your balances. If you enter a CoinGecko key in "Keys and services", it is sent to CoinGecko only.
+- Public blockchain data, only if you add a wallet connection: mempool.space and Blockstream (Bitcoin), public RPC nodes and Blockscout (Ethereum and other EVM networks), Solana RPC, toncenter (TON), Aptos indexer. Requests contain the public wallet address you entered. If you enter your own Alchemy key (in a connection or in "Keys and services") or your own node address, requests go there instead; the key is sent to Alchemy only.
 - Brokers and exchanges, only if you add them: T-Bank (T-Invest), Finam and Binance. The app sends the read-only key you entered to that provider only. The app refuses keys that can trade or withdraw.
-- NFT images are loaded only after you tap "Show images". The image host then sees your IP address.
+- NFT images are loaded only after you tap "Show images". The image host (or the public IPFS gateway ipfs.io for ipfs:// links) then sees your IP address.
+- Sanctions screening: the app downloads the public OFAC SDN list (sanctionslistservice.ofac.treas.gov) and compares addresses on your device. The request contains none of your addresses.
+- "Watch AI" plugin, only if you turn it on: US market data from SEC EDGAR (www.sec.gov, data.sec.gov), FINRA (cdn.finra.org) and Silicon Floor (siliconfloor.com). Each sees your IP address and the time of the request; your watchlist is applied on your device and is not sent. Requests to the SEC carry the app name and the developer's contact address in the User-Agent header, as the SEC requires; this is not your data.
 - Optional private sync, only if you enter a sync server address: the server receives encrypted blocks it cannot read, plus a vault identifier derived from your key, packet sizes, timestamps and your IP address. No sync server is built into the app and none is used unless you configure one.
 
 The app does not trade, send or withdraw funds, and never asks for seed phrases or private keys of wallets.
@@ -32,7 +34,7 @@ No name, e-mail, phone number, location, contacts, photos, advertising identifie
 
 ## Sharing and retention
 
-The developer does not receive your data, so there is nothing to share or retain. Third-party providers listed above handle requests under their own policies. Deleting the app deletes the local database. Deleting a connection erases its stored key.
+The developer does not receive your data, so there is nothing to share or retain. Third-party providers listed above handle requests under their own policies. Deleting the app deletes the local database. Deleting a connection or a service key in "Keys and services" erases the stored key.
 
 ## Beta testing
 
@@ -50,7 +52,7 @@ If this policy changes, the date above changes and the new text is published at 
 
 # Easy Aurum — Политика конфиденциальности
 
-Обновлено: 8 октября 2026
+Обновлено: 11 октября 2026
 
 Контакт: crypto.rider86@gmail.com
 
@@ -60,16 +62,18 @@ Easy Aurum хранит данные на вашем устройстве. У р
 
 ## Что хранится на устройстве
 
-Счета, операции, бюджеты, цели, правила и настройки подключений лежат в зашифрованной базе (SQLCipher). Ключ выводится из корневого секрета в Keychain iOS; тот же секрет восстанавливается из 24 слов. Слова показываются один раз и никуда не отправляются. Резервная копия .eabackup создаётся только по вашей команде и шифруется. Ключи подключений попадают в неё, только если вы включите этот переключатель.
+Счета, операции, бюджеты, цели, правила, настройки подключений и ключи сервисов лежат в зашифрованной базе (SQLCipher). Ключ выводится из корневого секрета в Keychain iOS; тот же секрет восстанавливается из 24 слов. Слова показываются один раз и никуда не отправляются. Резервная копия .eabackup создаётся только по вашей команде и шифруется. Ключи подключений и сервисов (Alchemy, CoinGecko) попадают в неё, только если вы включите этот переключатель.
 
 ## Что приложение отправляет в сеть
 
 Запросы идут с вашего устройства напрямую к сторонним сервисам; разработчик их не видит. Сервис видит ваш IP, время и данные запроса.
 
-- Курсы: Frankfurter (курсы ЕЦБ), Банк России, CoinGecko. В запросах коды валют и монет, не ваши остатки.
-- Блокчейны, только если вы добавили кошелёк: mempool.space, публичные RPC и Blockscout, Solana RPC, toncenter, индексер Aptos. В запросах публичный адрес, который вы ввели. С вашим ключом Alchemy или своим узлом запросы идут туда.
+- Курсы: Frankfurter (курсы ЕЦБ), Банк России, CoinGecko. Если один из них недоступен, приложение берёт резерв: currency-api (cdn.jsdelivr.net, latest.currency-api.pages.dev) для валют и Coinpaprika (api.coinpaprika.com) для монет. В запросах коды валют и монет, не ваши остатки. Ключ CoinGecko, если вы ввели его в «Ключи и сервисы», уходит только в CoinGecko.
+- Блокчейны, только если вы добавили кошелёк: mempool.space и Blockstream, публичные RPC и Blockscout, Solana RPC, toncenter, индексер Aptos. В запросах публичный адрес, который вы ввели. С вашим ключом Alchemy (в подключении или в «Ключи и сервисы») или своим узлом запросы идут туда; ключ уходит только в Alchemy.
 - Брокеры и биржи, только если вы их добавили: Т-Банк, Финам, Binance. Ключ «только чтение» уходит только этому провайдеру. Ключи с правом торговли и вывода приложение отклоняет.
-- Картинки NFT загружаются только после нажатия «Показать изображения»; сервер картинок видит ваш IP.
+- Картинки NFT загружаются только после нажатия «Показать изображения»; сервер картинок (или публичный шлюз IPFS ipfs.io для ссылок ipfs://) видит ваш IP.
+- Проверка санкций: приложение скачивает публичный список OFAC SDN (sanctionslistservice.ofac.treas.gov) и сверяет адреса на вашем устройстве. В запросе ваших адресов нет.
+- Плагин «Следим за Ai», только если вы его включили: данные американского рынка из SEC EDGAR (www.sec.gov, data.sec.gov), FINRA (cdn.finra.org) и Silicon Floor (siliconfloor.com). Каждый видит ваш IP и время запроса; список наблюдения применяется на устройстве и не передаётся. В запросах к SEC указаны название приложения и контактный адрес разработчика в заголовке User-Agent, как того требует SEC; это не ваши данные.
 - Необязательная приватная синхронизация, только если вы указали адрес сервера: он получает зашифрованные блоки, которые не может прочитать, а также идентификатор хранилища, размеры, время пакетов и IP. Встроенного сервера нет.
 
 Приложение не торгует, не переводит и не выводит средства и не запрашивает seed-фразы и приватные ключи кошельков.
