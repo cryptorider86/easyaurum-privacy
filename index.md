@@ -1,6 +1,6 @@
 # Easy Aurum — Privacy Policy
 
-Last updated: 11 October 2026
+Last updated: 16 October 2026
 
 Contact: crypto.rider86@gmail.com
 
@@ -23,6 +23,7 @@ The app contacts third-party services directly from your device. The developer d
 - Brokers and exchanges, only if you add them: T-Bank (T-Invest), Finam and Binance. The app sends the read-only key you entered to that provider only. The app refuses keys that can trade or withdraw.
 - NFT images are loaded only after you tap "Show images". The image host (or the public IPFS gateway ipfs.io for ipfs:// links) then sees your IP address.
 - Sanctions screening: the app downloads the public OFAC SDN list (sanctionslistservice.ofac.treas.gov) and compares addresses on your device. The request contains none of your addresses.
+- Mixer trace (optional, off by default): the app downloads a public list of mixer contract addresses from raw.githubusercontent.com (the project's own list). The request contains none of your addresses. If you turn the feature on and give consent, the app sends the addresses of the senders of your incoming Ethereum-type transfers, and the addresses that sent money to them, to Alchemy using your own Alchemy key; Alchemy sees those addresses and your IP address. The comparison with the list happens on your device. The result is a rough estimate, not a statement about anyone's conduct.
 - "Watch AI" plugin, only if you turn it on: US market data from SEC EDGAR (www.sec.gov, data.sec.gov), FINRA (cdn.finra.org) and Silicon Floor (siliconfloor.com). Each sees your IP address and the time of the request; your watchlist is applied on your device and is not sent. Requests to the SEC carry the app name and the developer's contact address in the User-Agent header, as the SEC requires; this is not your data.
 - Optional private sync, only if you enter a sync server address: the server receives encrypted blocks it cannot read, plus a vault identifier derived from your key, packet sizes, timestamps and your IP address. No sync server is built into the app and none is used unless you configure one.
 
@@ -52,7 +53,7 @@ If this policy changes, the date above changes and the new text is published at 
 
 # Easy Aurum — Политика конфиденциальности
 
-Обновлено: 11 октября 2026
+Обновлено: 16 октября 2026
 
 Контакт: crypto.rider86@gmail.com
 
@@ -73,6 +74,7 @@ Easy Aurum хранит данные на вашем устройстве. У р
 - Брокеры и биржи, только если вы их добавили: Т-Банк, Финам, Binance. Ключ «только чтение» уходит только этому провайдеру. Ключи с правом торговли и вывода приложение отклоняет.
 - Картинки NFT загружаются только после нажатия «Показать изображения»; сервер картинок (или публичный шлюз IPFS ipfs.io для ссылок ipfs://) видит ваш IP.
 - Проверка санкций: приложение скачивает публичный список OFAC SDN (sanctionslistservice.ofac.treas.gov) и сверяет адреса на вашем устройстве. В запросе ваших адресов нет.
+- След миксеров (необязательно, по умолчанию выключено): приложение скачивает публичный список адресов контрактов миксеров с raw.githubusercontent.com (собственный список проекта). В запросе ваших адресов нет. Если вы включите функцию и дадите согласие, приложение отправит в Alchemy по вашему ключу адреса отправителей ваших входящих переводов в сетях типа Ethereum и адреса, которые присылали им деньги; Alchemy увидит эти адреса и ваш IP. Сверка со списком выполняется на вашем устройстве. Результат — приблизительная оценка, а не утверждение о чьём-либо поведении.
 - Плагин «Следим за Ai», только если вы его включили: данные американского рынка из SEC EDGAR (www.sec.gov, data.sec.gov), FINRA (cdn.finra.org) и Silicon Floor (siliconfloor.com). Каждый видит ваш IP и время запроса; список наблюдения применяется на устройстве и не передаётся. В запросах к SEC указаны название приложения и контактный адрес разработчика в заголовке User-Agent, как того требует SEC; это не ваши данные.
 - Необязательная приватная синхронизация, только если вы указали адрес сервера: он получает зашифрованные блоки, которые не может прочитать, а также идентификатор хранилища, размеры, время пакетов и IP. Встроенного сервера нет.
 
